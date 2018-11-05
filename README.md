@@ -28,3 +28,9 @@ http://localhost:3000/
 
 it will be reflected in the browser
   
+## post handler
+
+view upload.html file for details.
+open upload.html,
+do a manual file upload. later you can extract post handling endoint and try using CURL
+ 
