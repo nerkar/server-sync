@@ -1,12 +1,29 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<form ref='uploadForm' 
-			id='uploadForm' 
-			action='http://localhost:8000/upload' 
-			method='post' 
-			encType="multipart/form-data">
-				<input type="file" name="sampleFile" />
-				<input type='submit' value='Upload!' />
-		</form>		
-	</body>
+   <head>
+      <title>Hello world</title>
+   </head>
+   <script src = "/socket.io/socket.io.js"></script>
+   <script>
+      var socket = io();
+      socket.on('newclientconnect',function(data) {
+//         document.body.innerHTML = '';
+//         document.write(data.description);
+
+    var node = document.createElement("LI");
+    var textnode = document.createTextNode( data.description );
+    node.appendChild(textnode);
+    document.getElementById("myList").appendChild(node);
+
+      });
+   </script>
+   <body>Hello world <br>
+
+<ul id="myList">
+ 
+</ul>
+
+
+
+</body>
 </html>

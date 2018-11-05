@@ -5,17 +5,12 @@ var io = require('socket.io')(http);
 const fileUpload = require('../lib/index.js');
 var chokidar = require('chokidar');
 
- 
 app.use('/form', express.static(__dirname + '/index.html'));
-
-// default options
 app.use(fileUpload());
-
 
 app.get('/', function(req, res) {
    res.sendfile('index.html');
 });
-
 
 app.post('/upload', function(req, res) {
   let sampleFile;
@@ -42,44 +37,25 @@ app.post('/upload', function(req, res) {
 });
 
 
-
-
- 
-http.listen(3000, function() {
-   console.log('listening on *:3000');
-});
-var globalSocket;
- 
-
-
- 
+var clients = 0;
 io.on('connection', function(socket) {
-
-globalSocket = socket;
-
-   console.log('A user connected');
-
-
-   //Send a message after a timeout of 4seconds
-   setTimeout(function() {
-//	socket.send('testing...');
-	socket.broadcast.emit('message','broadcasting');
-
-   }, 2000);
+   clients++;
+//   socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
+//   socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
 
 chokidar.watch('.\/uploads', { persistant: true }).on('all', (accessMode, path) => {
-    console.log(accessMode, path); 
-//      socket.send('uploaded : ' + accessMode, path); 
-
-	socket.broadcast.emit('message','file uploaded : ' + path);
+    console.log(accessMode, path);  
+	socket.emit('newclientconnect',{ description: 'file uploaded : ' + path });
+   socket.broadcast.emit('newclientconnect',{ description: 'file uploaded : ' + path })
 });
 
 
    socket.on('disconnect', function () {
-      console.log('A user disconnected');
+      clients--;
+      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
    });
 });
 
-
-
-
+http.listen(3000, function() {
+   console.log('listening on localhost:3000');
+});
