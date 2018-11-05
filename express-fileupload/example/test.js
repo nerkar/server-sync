@@ -52,7 +52,7 @@ chokidar.watch('.\/uploads', { persistant: true }).on('all', (accessMode, path) 
 
    socket.on('disconnect', function () {
       clients--;
-      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
+//      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
    });
 });
 
