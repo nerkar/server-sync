@@ -6,6 +6,10 @@ const fileUpload = require('../lib/index.js');
 var chokidar = require('chokidar');
 
 app.use('/form', express.static(__dirname + '/index.html'));
+
+
+app.use(express.static('uploads'));
+
 app.use(fileUpload());
 
 app.get('/', function(req, res) {
