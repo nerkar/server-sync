@@ -9,15 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "busboy": "^0.2.14",
     "chokidar": "^2.0.4",
     "express": "^4.16.4",
     "formidable": "^1.2.1",
     "http": "0.0.0",
+    "md5": "^2.2.1",
+    "mssql": "^4.2.1",
     "path": "^0.12.7",
     "socket.io": "^2.1.1",
-    "busboy": "^0.2.14",
-    "md5": "^2.2.1",
     "streamifier": "^0.1.1"
-
   }
 }
