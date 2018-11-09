@@ -37,9 +37,15 @@ do a manual file upload. later you can extract post handling endoint and try usi
 ## Database connection server
 
 > modify connection string in var config = {....}
+
 > create table as
+
 create table fileinfo(
+
 filename text)
+
 > run 'dbconnect.js' in another terminal 
+
+
 >  connection pools are not working so not integrated with test.js
  
